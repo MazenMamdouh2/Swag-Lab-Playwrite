@@ -1,0 +1,25 @@
+import { test, expect, errors } from '@playwright/test';
+
+test('add to cart', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+  await expect(page).toHaveTitle(/Swag Lab/);
+  await page.locator('[data-test="username"]').fill('standard_user');
+  await page.locator('[data-test="password"]').fill('secret_sauce');
+  await page.locator('[data-test="login-button"]').click();
+  await expect(page.getByText('Products')).toBeVisible();
+  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+  await page.locator('[data-test="inventory-item-description"]').nth(1).click();
+  await page.locator('[data-test="item-0-img-link"]').click();
+  await page.locator('[data-test="add-to-cart"]').click();
+  await page.locator('[data-test="shopping-cart-link"]').click();
+  await page.locator('[data-test="checkout"]').click();
+  await page.locator('[data-test="firstName"]').click();
+  await page.locator('[data-test="firstName"]').fill('mam');
+  await page.locator('[data-test="lastName"]').click();
+  await page.locator('[data-test="lastName"]').fill('mama');
+  await page.locator('[data-test="postalCode"]').click();
+  await page.locator('[data-test="postalCode"]').fill('mama');
+  await page.locator('[data-test="continue"]').click();
+  await page.locator('[data-test="finish"]').click();
+});
+
