@@ -22,4 +22,29 @@ test('add to cart', async ({ page }) => {
   await page.locator('[data-test="continue"]').click();
   await page.locator('[data-test="finish"]').click();
 });
-
+test('add to cart2', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/')
+  await expect(page).toHaveTitle(/Swag Lab/);
+  await page.locator('[data-test="username"]').fill('standard_user');
+  await page.locator('[data-test="password"]').fill('secret_sauce');
+  await page.locator('[data-test="login-button"]').click();
+  await expect(page.getByText('Products')).toBeVisible();
+  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+  await page.locator('[data-test="shopping-cart-link"]').click();
+  await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
+  await page.locator('[data-test="continue-shopping"]').click();
+  await page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
+  await page.locator('[data-test="shopping-cart-link"]').click();
+  await page.locator('[data-test="checkout"]').click();
+  await page.locator('[data-test="firstName"]').click();
+  await page.locator('[data-test="firstName"]').fill('mam');
+  await page.locator('[data-test="lastName"]').click();
+  await page.locator('[data-test="lastName"]').fill('mama');
+  await page.locator('[data-test="postalCode"]').click();
+  await page.locator('[data-test="postalCode"]').fill('mama');
+  await page.locator('[data-test="continue"]').click();
+  await page.locator('[data-test="finish"]').click();
+  await page.locator('[data-test="generate-pdf-order"]').click();  
+  const download1Promise = page.waitForEvent('download');
+  const download1 = await download1Promise;
+  });
